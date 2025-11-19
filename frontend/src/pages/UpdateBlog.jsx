@@ -1,6 +1,3 @@
-
-
-
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -204,23 +201,22 @@ function UpdateBlog() {
 };
 
 
-  // Delete blog with confirmation
-  const deleteBlog = async () => {
-    if (!window.confirm("Are you sure you want to delete this blog?")) return;
+const deleteBlog = async () => {
+  if (!window.confirm("Are you sure you want to delete this blog?")) return;
 
-    try {
-      // const res = await api.delete(`/blog/delete/${id}`);
-         const res= await api.delete(`/blog/${id}`);
+  try {
+    const res = await api.delete(`/blog/delete/${id}`);
 
-      if (res.data.success) {
-        toast.success(res.data.message);
-        navigate("/dashboard/your-blog");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong");
+    if (res.data.success) {
+      toast.success(res.data.message);
+      navigate("/dashboard/your-blogs");
     }
-  };
+  } catch (error) {
+    console.log(error);
+    toast.error("Something went wrong");
+  }
+};
+
 
 
   return (
